@@ -10,7 +10,6 @@ import java.util.stream.*;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
-
 class Result {
 
     /*
@@ -22,7 +21,22 @@ class Result {
 
     public static String fairRations(List<Integer> B) {
     // Write your code here
+        int lastID = -1;
+        int count = 0;
 
+        for (int i = 0; i < B.size(); ++i) {
+            if (B.get(i) % 2 != 0) {
+                if (lastID == -1) {
+                    lastID = i;
+                } else {
+                    count += Math.abs(i - lastID) * 2;
+                    lastID = -1;
+                }
+            }
+        }
+
+        return (lastID == -1) ? Integer.toString(count) : "NO";
     }
 
 }
+////////////
